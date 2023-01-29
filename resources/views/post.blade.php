@@ -4,7 +4,8 @@
     <article>
         <h1>{{ $post->title }}</h1>
 
-        <p>{{ $post->excerpt }}</p>
+        <p>{!! $post->body !!}</p> 
+        <!-- for html: {!! $post->body !!} -->
     </article>
 
     <a href="/">go back</a>
