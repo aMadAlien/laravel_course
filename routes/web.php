@@ -22,7 +22,8 @@ Route::get('posts/{post}', function ($slug) {
         return redirect('/');
     }
 
-    $post = file_get_contents($path);
+    $post = cache()->remember("posts.{$slug}", 1200, fn() => file_get_contents($path)); // 2nd parament = when this cache item will be deleted => 1200s
+    // now()->addHour()/addDay()/addDays()/addWeeks()/addMinutes(20) => also allows
 
     return view('post', ['post' => $post]);
 })->where('post', '[A-z_\-]+'); //check if path contains only letters and "-"
