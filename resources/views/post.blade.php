@@ -7,7 +7,9 @@
 <body>
 
     <article>
-        <?= $post ?>
+        <h1><?= $post->title; ?></h1>
+
+        <p><?= $post->excerpt; ?></p>
     </article>
 
     <a href="/">go back</a>
