@@ -14,5 +14,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('posts');
 });
+
+Route::get('posts/{post}', function ($slug) {
+    if (! file_exists($path = __DIR__ . "/../resources/posts/{$slug}.html")) {
+        return redirect('/');
+    }
+
+    $post = file_get_contents($path);
+
+    return view('post', ['post' => $post]);
+})->where('post', '[A-z_\-]+'); //check if path contains only letters and "-"
+
+// ->whereAlpha('post') => only letters
+// ->whereAlphaNumeric('post') => only letters and numbers
+// ->whereNumeric('post') => only numbers
