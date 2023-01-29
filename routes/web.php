@@ -22,10 +22,6 @@ Route::get('/', function () {
 
 Route::get('posts/{post}', function ($slug) {
     return view('post', [
-        'post' => Post::find($slug)
+        'post' => Post::findOrFail($slug)
     ]);
-})->where('post', '[A-z_\-]+'); //check if path contains only letters and "-"
-
-// ->whereAlpha('post') => only letters
-// ->whereAlphaNumeric('post') => only letters and numbers
-// ->whereNumeric('post') => only numbers
+});
