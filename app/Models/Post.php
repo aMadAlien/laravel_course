@@ -17,4 +17,10 @@ class Post extends Model
         // belongs to relationship
         return $this->belongsTo(Category::class);
     }
+
+    public function user()
+    {
+        // "a post belongs to a user"
+        return $this->belongsTo(User::class);
+    }
 }
