@@ -26,4 +26,14 @@ class Post extends Model
         // author is a user that has posts and own user_id (!not author_id)
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        // when() is system function
+        $query->when($filters['search'] ?? false, function ($query, $search) {
+            $query
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%');
+        });
+    }
 }
