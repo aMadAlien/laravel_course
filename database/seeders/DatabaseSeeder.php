@@ -17,52 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // we don't need truncate() if we use php artisan migrate:fresh --seed
+        // instead php artisan db:seed
         User::truncate();
         Post::truncate();
         Category::truncate();
 
-        $user = User::factory()->create();
-
-        $personal = Category::create([
-            'name' => 'personal',
-            'slug' => 'personal'
+        $user = User::factory()->create([
+            'name' => 'iren'
         ]);
 
-        $work = Category::create([
-            'name' => 'work',
-            'slug' => 'work'
-        ]);
-
-        $hobbies = Category::create([
-            'name' => 'hobbies',
-            'slug' => 'hobbies'
-        ]);
-
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $personal->id,
-            'title' => 'first',
-            'slug' => 'my_first_post',
-            'excerpt' => 'first lorem lorem',
-            'body' => 'body first body first body first body first body first body first body first v body firstv ',
-        ]);
-
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $work->id,
-            'title' => 'second',
-            'slug' => 'my_second_post',
-            'excerpt' => 'second lorem lorem',
-            'body' => 'body second body first body first body first body first body first body first v body firstv ',
-        ]);
-
-        Post::create([
-            'user_id' => $user->id,
-            'category_id' => $hobbies->id,
-            'title' => 'third',
-            'slug' => 'my_third_post',
-            'excerpt' => 'third lorem lorem',
-            'body' => 'body third body first body first body first body first body first body first v body firstv ',
+        Post::factory(5)->create([
+            'user_id' => $user->id
         ]);
     }
 }
