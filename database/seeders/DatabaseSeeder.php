@@ -19,9 +19,9 @@ class DatabaseSeeder extends Seeder
     {
         // we don't need truncate() if we use php artisan migrate:fresh --seed
         // instead php artisan db:seed
-        User::truncate();
-        Post::truncate();
-        Category::truncate();
+        // User::truncate();
+        // Post::truncate();
+        // Category::truncate();
 
         $user = User::factory()->create([
             'name' => 'iren'
